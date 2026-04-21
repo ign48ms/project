@@ -241,8 +241,8 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                     <td className="border border-gray-300 p-2">
                       <input
                         type="number"
-                        step="any"
-                        value={weights[index] !== 0 ? weights[index] : ''}
+                        step="0.01"
+                        value={weights[index]}
                         onChange={(e) => handleWeightChange(index, e.target.value)}
                         className="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
