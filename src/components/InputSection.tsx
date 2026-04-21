@@ -174,6 +174,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                         <input
                           type="number"
                           step="0.01"
+                          min="0"
                           value={value}
                           onChange={(e) => handleMatrixChange(i, j, e.target.value)}
                           className="w-full px-2 py-1 text-center border-none focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -242,6 +243,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                       <input
                         type="number"
                         step="0.01"
+                        min="0"
                         value={weights[index]}
                         onChange={(e) => handleWeightChange(index, e.target.value)}
                         className="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
@@ -251,6 +253,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                       <input
                         type="number"
                         step="any"
+                        min="0"
                         placeholder="auto"
                         value={customMin[index] !== null ? customMin[index] : ''}
                         onChange={(e) => handleCustomMinChange(index, e.target.value)}
@@ -261,6 +264,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                       <input
                         type="number"
                         step="any"
+                        min="0"
                         placeholder="auto"
                         value={customMax[index] !== null ? customMax[index] : ''}
                         onChange={(e) => handleCustomMaxChange(index, e.target.value)}
