@@ -10,6 +10,7 @@ interface InputSectionProps {
     customMin?: (number | null)[];
     customMax?: (number | null)[];
     weightsPreNormalized?: boolean;
+    matrixPreNormalized?: boolean;
   }) => void;
 }
 
@@ -24,6 +25,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
   const [customMin, setCustomMin] = useState<(number | null)[]>([]);
   const [customMax, setCustomMax] = useState<(number | null)[]>([]);
   const [weightsPreNormalized, setWeightsPreNormalized] = useState(false);
+  const [matrixPreNormalized, setMatrixPreNormalized] = useState(false);
 
   useEffect(() => {
     const newMatrix = Array(numAlternatives)
@@ -85,6 +87,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
       customMin,
       customMax,
       weightsPreNormalized,
+      matrixPreNormalized,
     });
   };
 
@@ -99,6 +102,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
     setConcordanceThreshold(0.7);
     setDiscordanceThreshold(0.3);
     setWeightsPreNormalized(false);
+    setMatrixPreNormalized(false);
   };
 
   const totalWeight = weights.reduce((sum, w) => sum + w, 0);
@@ -141,9 +145,23 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
         </div>
 
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3 text-gray-700">
-            Matrice de performance
-          </h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-700">
+              Matrice de performance
+            </h3>
+            <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md">
+              <input
+                type="checkbox"
+                id="matrixPreNormalized"
+                checked={matrixPreNormalized}
+                onChange={(e) => setMatrixPreNormalized(e.target.checked)}
+                className="w-4 h-4 text-blue-600 rounded"
+              />
+              <label htmlFor="matrixPreNormalized" className="text-sm text-gray-700 cursor-pointer">
+                Matrice déjà normalisée
+              </label>
+            </div>
+          </div>
           <div className="overflow-x-auto">
             <table className="min-w-full border-collapse">
               <thead>

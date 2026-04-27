@@ -30,6 +30,7 @@ function App() {
     customMin?: (number | null)[];
     customMax?: (number | null)[];
     weightsPreNormalized?: boolean;
+    matrixPreNormalized?: boolean;
   }) => {
     setError(null);
 
@@ -47,13 +48,17 @@ function App() {
       return;
     }
 
-    // Normalize the performance matrix once using provided or data-derived min/max
-    const normalizedMatrix = normalizeMatrix(
-      data.performanceMatrix,
-      data.criteriaTypology,
-      data.customMin || [],
-      data.customMax || []
-    );
+    // Use provided matrix or normalize it based on matrixPreNormalized flag
+    let normalizedMatrix = data.performanceMatrix;
+    if (!data.matrixPreNormalized) {
+      // Normalize the performance matrix using provided or data-derived min/max
+      normalizedMatrix = normalizeMatrix(
+        data.performanceMatrix,
+        data.criteriaTypology,
+        data.customMin || [],
+        data.customMax || []
+      );
+    }
 
     // Handle weights: if pre-normalized, use as-is; otherwise will be normalized in concordance calculation
     const weightsToUse = data.weightsPreNormalized 
