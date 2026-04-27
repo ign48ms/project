@@ -192,7 +192,6 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                         <input
                           type="number"
                           step="any"
-                          min="0"
                           value={value}
                           onChange={(e) => handleMatrixChange(i, j, e.target.value)}
                           className="w-full px-2 py-1 text-center border-none focus:outline-none focus:ring-1 focus:ring-blue-500"
