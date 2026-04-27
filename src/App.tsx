@@ -37,7 +37,8 @@ function App() {
       data.performanceMatrix,
       data.weights,
       data.concordanceThreshold,
-      data.discordanceThreshold
+      data.discordanceThreshold,
+      data.weightsPreNormalized || false
     );
 
     if (validationError) {

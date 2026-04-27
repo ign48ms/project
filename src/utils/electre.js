@@ -233,7 +233,8 @@ export function validateInputs(
   performanceMatrix,
   weights,
   concordanceThreshold,
-  discordanceThreshold
+  discordanceThreshold,
+  weightsPreNormalized = false
 ) {
   // Vérifier que la matrice n'est pas vide
   if (!performanceMatrix || performanceMatrix.length === 0) {
@@ -249,6 +250,13 @@ export function validateInputs(
   const sumWeights = weights.reduce((s, w) => s + w, 0);
   if (sumWeights <= 0) {
     return "La somme des poids doit être supérieure à 0";
+  }
+
+  // Si poids pré-normalisés, vérifier que la somme est exactement 1
+  if (weightsPreNormalized) {
+    if (Math.abs(sumWeights - 1) > 0.0001) {
+      return `Les poids pré-normalisés doivent être égaux à 1 (actuellement: ${sumWeights.toFixed(4)})`;
+    }
   }
 
   // Vérifier les seuils

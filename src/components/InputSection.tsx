@@ -173,7 +173,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                       <td key={j} className="border border-gray-300 p-1">
                         <input
                           type="number"
-                          step="0.01"
+                          step="any"
                           min="0"
                           value={value}
                           onChange={(e) => handleMatrixChange(i, j, e.target.value)}
@@ -242,7 +242,7 @@ export default function InputSection({ onCalculate }: InputSectionProps) {
                     <td className="border border-gray-300 p-2">
                       <input
                         type="number"
-                        step="0.01"
+                        step="any"
                         min="0"
                         value={weights[index]}
                         onChange={(e) => handleWeightChange(index, e.target.value)}
